@@ -10,10 +10,37 @@
       }
     }
 
+    stages {
     stage('Test') {
       steps {
         script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+    
+    stage('Package') {
+      steps {
+        script {
           sh 'echo "Testing Stage"'
+        }
+      }
+    }
+    
+    stages {
+    stage('Deploy') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
+        }
+      }
+    }
+    
+    stages {
+    stage('Cleanup') {
+      steps {
+        script {
+          sh 'echo "Building Stage"'
         }
       }
     }
