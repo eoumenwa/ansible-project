@@ -1,45 +1,15 @@
 pipeline {
     agent any
-
-  stages {
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/eoumenwa/ansible-project.git'
+            }
         }
-      }
-    }
-
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
+        stage('Execute Ansible') {
+            steps {
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'ci', playbook: 'nginx.yml'
+            }
         }
-      }
-    }
-    
-    stage('Package') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
-      }
-    }
- 
-    stage('Deploy') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
-      }
-    }
-
-    stage('Clean up') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
-      }
-    }
     }
 }
