@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    parameters {
+      string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
+    }
+   
     stages {
         stage('SCM Checkout') {
             steps {
@@ -8,7 +13,7 @@ pipeline {
         }
         stage('Execute Ansible') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci.yml', playbook: 'playbooks/nginx.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '${inventory}', playbook: 'playbooks/nginx.yml'
             }
         }
     }
