@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: db
 - name: Include dynamic variables 
   import_playbook: ../static-assignments/common.yml 
   include: ../dynamic-assignments/env-vars.yml
@@ -10,14 +10,7 @@
 - name: Mysql db assignment
   import_playbook: ../static-assignments/mysql.yml
 
-- hosts: webservers
-- name: Webserver assignment
-  import_playbook: ../static-assignments/webservers.yml
 
-- hosts: lb
-- name: Loadbalancers assignment
-  import_playbook: ../static-assignments/loadbalancers.yml
-  when: load_balancer_is_required 
 
 
    
