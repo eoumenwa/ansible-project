@@ -6,13 +6,13 @@
   tags:
     - always
 
-- hosts: webservers
-- name: Webserver assignment
-  import_playbook: ../static-assignments/webservers.yml
-
 - hosts: db
 - name: Mysql db assignment
   import_playbook: ../static-assignments/mysql.yml
+
+- hosts: webservers
+- name: Webserver assignment
+  import_playbook: ../static-assignments/webservers.yml
 
 - hosts: lb
 - name: Loadbalancers assignment
