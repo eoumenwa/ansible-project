@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Execute Ansible') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '${/home/ubuntu/ansible-project/inventory}', playbook: 'playbooks/nginx.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '$inventory', playbook: 'playbooks/nginx.yml'
             }
         }
     }
