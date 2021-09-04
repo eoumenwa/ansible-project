@@ -4,8 +4,15 @@ pipeline {
     parameters {
       string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
     }
-   
+
     stages {
+        stage("Initial cleanup") {
+          steps {
+            dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
+        }
         stage('SCM Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/eoumenwa/ansible-project.git'
@@ -13,7 +20,7 @@ pipeline {
         }
         stage('Execute Ansible') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '${inventory}', playbook: 'playbooks/nginx.yml'
+
             }
         }
     }
