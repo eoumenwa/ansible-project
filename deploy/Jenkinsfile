@@ -13,6 +13,13 @@ pipeline {
             }
           }
         }
+        stage('Build') {
+          steps {
+            script {
+              sh 'echo "Building Stage"'
+            }
+          }    
+        }
         stage('SCM Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/eoumenwa/ansible-project.git'
@@ -20,7 +27,7 @@ pipeline {
         }
         stage('Execute Ansible') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: '${inventory}', playbook: 'playbooks/nginx.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/ci', playbook: 'playbooks/site.yml'
             }
         }
     }

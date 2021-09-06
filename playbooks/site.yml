@@ -6,18 +6,11 @@
   tags:
     - always
 
-- hosts: webservers
-- name: Webserver assignment
-  import_playbook: ../static-assignments/webservers.yml
-
 - hosts: db
 - name: Mysql db assignment
   import_playbook: ../static-assignments/mysql.yml
 
-- hosts: lb
-- name: Loadbalancers assignment
-  import_playbook: ../static-assignments/loadbalancers.yml
-  when: load_balancer_is_required 
+
 
 
    
