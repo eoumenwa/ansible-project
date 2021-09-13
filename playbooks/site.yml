@@ -1,12 +1,12 @@
 ---
 - hosts: all
-- name: Include dynamic variables 
-  import_playbook: ../static-assignments/common.yml 
+- name: include dynamic variables 
+  import_playbook: ../static-assignments/mysql.yml 
   include: ../dynamic-assignments/env-vars.yml
   tags:
     - always
 
-- hosts: db
+- hosts: database
 - name: Mysql db assignment
   import_playbook: ../static-assignments/mysql.yml
 
